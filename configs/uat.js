@@ -1,6 +1,6 @@
 module.exports = {
     SERVER: {
-        HOST: '',
+        HOST: 'https://rf3i-api-uat.herokuapp.com/',
         PORT: ''
     },
     FIREBASE: {
