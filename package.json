@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env NODE_ENV=uat node server.js",
+    "start": "cross-env NODE_ENV=prod node server.js",
     "dev": "cross-env NODE_ENV=dev nodemon server.js",
     "uat": "cross-env NODE_ENV=uat nodemon server.js",
     "prod": "cross-env NODE_ENV=prod nodemon server.js"
