@@ -1,23 +1,32 @@
 const nodemailer = require('nodemailer')
+const OAuth2Client = require('google-auth-library').OAuth2Client
 
-const createTransport = async function() {
-    let transPorter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
+const myOAuth2Client = new OAuth2Client(
+    _config.EMAIL_SERVICE.GOOGLE_MAILER_CLIENT_ID,
+    _config.EMAIL_SERVICE.GOOGLE_MAILER_CLIENT_SECRET
+)
+
+myOAuth2Client.setCredentials({
+    refresh_token: _config.EMAIL_SERVICE.GOOGLE_MAILER_REFRESH_TOKEN
+})
+
+const sendEmail = async function (data) {
+    let myAccessTokenObject = await myOAuth2Client.getAccessToken()
+    let myAccessToken = myAccessTokenObject?.token
+
+    let transporter = nodemailer.createTransport({
         service: 'gmail',
-        port: '465',
-        secure: false,
         auth: {
-            type: 'login',
-            user: _config.EMAIL_SERVICE.USER,
-            pass: _config.EMAIL_SERVICE.PASSWORD
+            type: 'OAuth2',
+            user: _config.EMAIL_SERVICE.ADMIN_EMAIL_ADDRESS,
+            clientId: _config.EMAIL_SERVICE.GOOGLE_MAILER_CLIENT_ID,
+            clientSecret: _config.EMAIL_SERVICE.GOOGLE_MAILER_CLIENT_SECRET,
+            refresh_token: _config.EMAIL_SERVICE.GOOGLE_MAILER_REFRESH_TOKEN,
+            accessToken: myAccessToken
         }
     })
-    return transPorter
-}
 
-const sendEmail = async function(data) {
-    let transporter = await createTransport()
-    let template = 
+    let template =
         `<p>You have got a new message from a client with the following content:</p>
         <ul>
             <li>Name: ${data.name}</li>
@@ -28,22 +37,24 @@ const sendEmail = async function(data) {
         </ul>`
 
     let mailOptions = {
-        from: _config.EMAIL_SERVICE.USER,
+        from: _config.EMAIL_SERVICE.ADMIN_EMAIL_ADDRESS,
         to: _config.EMAIL_SERVICE.DESTINATION_EMAIL,
-        subject: 'Test Nodemailer',
-        html: template,
-        text: ''
+        subject: 'MESSAGE RECEIVED FROM RF3I WEB',
+        html: template
     }
 
     let message
+    let code
     await transporter.sendMail(mailOptions).then(info => {
-        message = info
+        message = 'Email was sent successful'
+        code = 200
     }).catch(err => {
         console.log('Error while sent mail: ', err.response)
         message = err.response
-    }) 
+        code = 400
+    })
 
-    return message
+    return { message, code }
 }
 
 module.exports = {

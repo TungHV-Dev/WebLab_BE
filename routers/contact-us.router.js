@@ -6,9 +6,9 @@ router.post('/submit-form', async (req, res) => {
     try {
         let result = await email.sendEmail(req.body)
 
-        return res.status(200).json({ message: result })
+        return res.status(200).json(result)
     } catch (e) {
-        return res.status(e.status || 500).json({ message: e?.message })
+        return res.status(e.status || 500).json({ code: 500, message: e?.message })
     }
 })
 
