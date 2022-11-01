@@ -4,7 +4,14 @@ module.exports = {
         PORT: ''
     },
     FIREBASE: {
-
+        API_KEY: 'AIzaSyAxPht5DLG0fyV4SCsQ-EI44KsPrfW2oaQ',
+        AUTH_DOMAIN: 'weblab-be.firebaseapp.com',
+        DATABASE_URL: 'https://weblab-be-default-rtdb.asia-southeast1.firebasedatabase.app',
+        PROJECT_ID: 'weblab-be',
+        STORAGE_BUCKET: 'weblab-be.appspot.com',
+        MESSAGING_SENDER_ID: '926947434053',
+        APP_ID: '1:926947434053:web:c2b17c24e4c627c8fd4d2c',
+        MEASUREMENT_ID: 'G-E1HKKMBC85'
     },
     SESSION: {
         SECRET: `collection`
