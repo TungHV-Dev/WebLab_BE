@@ -29,7 +29,7 @@ const sendEmail = async function (data) {
     let template =
         `<p>You have got a new message from a client with the following content:</p>
         <ul><li>Name: ${data.name}</li><li>Email: ${data.email}</li>`
-    
+
     if (data?.phone_number) {
         template += `<li>Phone number: ${data?.phone_number}</li>`
     }
@@ -37,7 +37,7 @@ const sendEmail = async function (data) {
     if (data?.company) {
         template += `<li>Company: ${data?.company}</li>`
     }
-    
+
     template += `<li>Message: ${data.message}</li></ul>`
 
     let mailOptions = {
@@ -58,7 +58,7 @@ const sendEmail = async function (data) {
         code = 400
     })
 
-    return { message, code }
+    return { code, message }
 }
 
 module.exports = {
