@@ -1,4 +1,4 @@
-const firebase = require('firebase/app')
+const firebase = require('firebase')
 
 const createDatabase = function () {
     let firebaseConfig = {
@@ -13,7 +13,6 @@ const createDatabase = function () {
     }
 
     firebase.initializeApp(firebaseConfig)
-
     return firebase.database()
 }
 

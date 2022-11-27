@@ -5,9 +5,6 @@ const session = require('express-session')
 
 global._config = require(`./configs/${NODE_ENV}`)
 
-const firebaseConnection = require('./connections/firebase')
-global._database = firebaseConnection.createDatabase()
-
 const bodyParser = require('body-parser')
 const port = NODE_ENV == 'uat' ? process.env.PORT : _config.SERVER.PORT
 const app = express()
