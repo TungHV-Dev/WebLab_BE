@@ -34,10 +34,21 @@ const getNewsDetail = async function (data) {
 
 const getAllNews = async function (data) {
     try {
-        
+        let limit = data.size
+        let offset = data.size * (data.page - 1)
 
+        let allNewsPaging = await newsRepo.getAllNewsPaging(limit, offset)
+        let result = await Promise.all(allNewsPaging.map(news => {
+            return {
+                id: news.id,
+                title: news.title,
+                sub_title: news.sub_title,
+                image_title_url: news.image_title_url,
+                created_time: moment(news.created_time).format(constant.DATE_FORMAT.YYYY_MM_DD_HH_mm_ss)
+            }
+        }))
 
-
+        return result || []
     } catch (e) {
         throw e
     }

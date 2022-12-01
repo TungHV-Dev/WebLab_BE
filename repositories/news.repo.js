@@ -44,9 +44,22 @@ const getLimitOfLastNews = async (limit) => {
 const getAllNewsPaging = async (limit, offset) => {
     try {
         let result = {}
-        await _database.ref(constant.FIREBASE_NODE.NEWS)
+        await _database.ref(constant.FIREBASE_NODE.NEWS).once('value', (snapshot) => {
+            if (snapshot) {
+                result = snapshot.val()
+            }
+        })
 
+        let response = []
+        Object.keys(result).map(key => {
+            let responseObj = { id: key, ...result[key] }
+            response.push(responseObj)
+        })
 
+        let start = offset
+        let end = (offset + limit) < response.length ? (offset + limit) : response.length
+        
+        return response.reverse().slice(start, end)
     } catch (e) {
         console.log('Exception while get all news with paging: ', e?.message)
     }
