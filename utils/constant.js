@@ -1,4 +1,13 @@
 module.exports = {
+    RESPONSE_MESSAGE: {
+        SUCCESS: 'Success',
+        FAIL: 'Fail'
+    },
+    RESPONSE_CODE: {
+        SUCCESS: 200,
+        BAD_REQUEST: 400,
+        INTERNAL_SERVER: 500
+    },
     DATE_FORMAT: {
         yyyy_mm_dd_HH_mm_ss: 'yyyy-mm-dd HH:mm:ss',
         YYYY_MM_DD_HH_mm_ss: 'YYYY-MM-DD HH:mm:ss',
@@ -9,8 +18,9 @@ module.exports = {
         YYYY_MM_DD: 'YYYY-MM-DD',
         YYYYMMDDHHmmss: 'YYYYMMDDHHmmss'
     },
-    NODE_NAME: {
+    FIREBASE_NODE: {
         FORM_SUBMITED_HISTORY: 'form_submited_history',
         NEWS: 'news'
-    }
+    },
+    NUMBER_OF_MAIN_NEWS_RECORDS: 3
 }

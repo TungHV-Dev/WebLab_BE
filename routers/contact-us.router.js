@@ -16,7 +16,7 @@ router.post('/submit-form', async (req, res) => {
 
         return res.status(200).json({ code: 0, message: 'Success' })
     } catch (e) {
-        return res.status(e.status || 500).json({ code: 500, message: e?.message })
+        return res.status(e.status || 500).json({ code: -1, message: e?.message })
     }
 })
 
