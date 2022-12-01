@@ -35,9 +35,20 @@ const getLimitOfLastNews = async (limit) => {
             response.push(responseObj)
         })
 
-        return response
+        return response.reverse()
     } catch (e) {
-        console.log('Exception while get news: ', e?.message)
+        console.log('Exception while get limit news: ', e?.message)
+    }
+}
+
+const getAllNewsPaging = async (limit, offset) => {
+    try {
+        let result = {}
+        await _database.ref(constant.FIREBASE_NODE.NEWS)
+
+
+    } catch (e) {
+        console.log('Exception while get all news with paging: ', e?.message)
     }
 }
 
@@ -52,12 +63,13 @@ const getNewsById = async (id) => {
 
         return { id, ...result }
     } catch (e) {
-        console.log('Exception while get news: ', e?.message)
+        console.log('Exception while get news detail: ', e?.message)
     }
 }
 
 module.exports = {
     insertNews,
     getLimitOfLastNews,
+    getAllNewsPaging,
     getNewsById
 }

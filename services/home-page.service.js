@@ -32,6 +32,17 @@ const getNewsDetail = async function (data) {
     }
 }
 
+const getAllNews = async function (data) {
+    try {
+        
+
+
+
+    } catch (e) {
+        throw e
+    }
+}
+
 const addNews = async function (data) {
     try {
         await newsRepo.insertNews(data)
@@ -43,5 +54,6 @@ const addNews = async function (data) {
 module.exports = {
     getMainNewsForHomePage,
     getNewsDetail,
+    getAllNews,
     addNews
 }
