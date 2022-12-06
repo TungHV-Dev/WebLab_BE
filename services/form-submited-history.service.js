@@ -1,5 +1,5 @@
 const formRepo = require('../repositories/form-submited-history.repo')
-const emailService = require('../utils/email')
+const emailService = require('../utils/email-sender')
 
 const submitContactUsForm = async function (data) {
     try {
