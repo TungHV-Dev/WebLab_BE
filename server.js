@@ -7,6 +7,7 @@ global._config = require(`./configs/${NODE_ENV}`)
 
 const firebaseConnection = require('./connections/firebase')
 global._database = firebaseConnection.createDatabase()
+global._storage = firebaseConnection.createStorage()
 
 const bodyParser = require('body-parser')
 const port = NODE_ENV == 'uat' ? process.env.PORT : _config.SERVER.PORT
