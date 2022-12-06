@@ -4,8 +4,14 @@ module.exports = {
         FAIL: 'Fail'
     },
     RESPONSE_CODE: {
-        SUCCESS: 200,
+        SUCCESS: 0,
+        FAIL: -1
+    },
+    HTTP_STATUS_CODE: {
+        OK: 200,
         BAD_REQUEST: 400,
+        UNAUTHORIZED: 401,
+        NOT_FOUND: 404,
         INTERNAL_SERVER: 500
     },
     DATE_FORMAT: {
@@ -19,8 +25,11 @@ module.exports = {
         YYYYMMDDHHmmss: 'YYYYMMDDHHmmss'
     },
     FIREBASE_NODE: {
+        EVENTS: 'events',
         FORM_SUBMITED_HISTORY: 'form_submited_history',
         NEWS: 'news'
     },
-    NUMBER_OF_MAIN_NEWS_RECORDS: 3
+    NUMBER_OF_MAIN_NEWS_RECORDS: 3,
+    NUMBER_OF_MAIN_EVENTS_RECORDS: 3,
+    NUMBER_OF_MAIN_ACTIVITIES: 3
 }
