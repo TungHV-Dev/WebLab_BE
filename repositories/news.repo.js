@@ -3,7 +3,7 @@ const moment = require('moment')
 
 const insertNews = async (data) => {
     try {
-        let key = _database.ref(constant.FIREBASE_NODE.NEWS).push().key
+        let key = _database.ref(constant.FIREBASE_DATABASE_NODE.NEWS).push().key
         let insertObj = {
             title: data.title || null,
             sub_title: data.sub_title || null,
@@ -14,7 +14,7 @@ const insertNews = async (data) => {
             created_time: moment().format(constant.DATE_FORMAT.YYYY_MM_DD_HH_mm_ss_SSS)
         }
 
-        await _database.ref(constant.FIREBASE_NODE.NEWS + '/' + key).set(insertObj)
+        await _database.ref(constant.FIREBASE_DATABASE_NODE.NEWS + '/' + key).set(insertObj)
     } catch (e) {
         console.log('Exception while insert news: ', e?.message)
     }
@@ -23,7 +23,7 @@ const insertNews = async (data) => {
 const getLimitOfLastNews = async (limit) => {
     try {
         let result = {}
-        await _database.ref(constant.FIREBASE_NODE.NEWS).limitToLast(limit).once('value', (snapshot) => {
+        await _database.ref(constant.FIREBASE_DATABASE_NODE.NEWS).limitToLast(limit).once('value', (snapshot) => {
             if (snapshot) {
                 result = snapshot.val()
             }
@@ -44,7 +44,7 @@ const getLimitOfLastNews = async (limit) => {
 const getAllNewsPaging = async (limit, offset) => {
     try {
         let result = {}
-        await _database.ref(constant.FIREBASE_NODE.NEWS).once('value', (snapshot) => {
+        await _database.ref(constant.FIREBASE_DATABASE_NODE.NEWS).once('value', (snapshot) => {
             if (snapshot) {
                 result = snapshot.val()
             }
@@ -68,7 +68,7 @@ const getAllNewsPaging = async (limit, offset) => {
 const getNewsById = async (id) => {
     try {
         let result = {}
-        await _database.ref(constant.FIREBASE_NODE.NEWS + '/' + id).once('value', (snapshot) => {
+        await _database.ref(constant.FIREBASE_DATABASE_NODE.NEWS + '/' + id).once('value', (snapshot) => {
             if (snapshot) {
                 result = snapshot.val()
             }

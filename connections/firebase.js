@@ -1,4 +1,5 @@
 const firebase = require('firebase')
+require('firebase/database')
 require('firebase/storage')
 
 const firebaseConfig = {

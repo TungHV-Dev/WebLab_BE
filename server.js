@@ -4,6 +4,7 @@ const cors = require('cors')
 const session = require('express-session')
 
 global._config = require(`./configs/${NODE_ENV}`)
+global.XMLHttpRequest = require('xhr2')
 
 const firebaseConnection = require('./connections/firebase')
 global._database = firebaseConnection.createDatabase()

@@ -3,7 +3,7 @@ const constant = require('../utils/constant')
 const getLimitOfLastEvents = async (limit) => {
     try {
         let result = {}
-        await _database.ref(constant.FIREBASE_NODE.EVENTS).limitToLast(limit).once('value', (snapshot) => {
+        await _database.ref(constant.FIREBASE_DATABASE_NODE.EVENTS).limitToLast(limit).once('value', (snapshot) => {
             if (snapshot) {
                 result = snapshot.val()
             }
