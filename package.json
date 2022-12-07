@@ -23,6 +23,7 @@
     "google-auth-library": "^8.6.0",
     "moment": "^2.29.4",
     "nodemailer": "^6.8.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "xhr2": "^0.2.1"
   }
 }
