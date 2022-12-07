@@ -3,11 +3,11 @@ const constant = require('./constant')
 const getObjectUrl = async (fileName, type) => {
     try {
         let objectRef
-        let storageTypeKeys = Object.keys(constant.FIREBASE_STORAGE_TYPE)
+        let storageKeys = Object.keys(constant.FIREBASE_STORAGE_FOLDER)
         
-        for (let key of storageTypeKeys) {
-            if (type === constant.FIREBASE_STORAGE_TYPE[key]) {
-                objectRef = _storage.ref(constant.FIREBASE_STORAGE_TYPE[key]).child(fileName)
+        for (let key of storageKeys) {
+            if (type === constant.FIREBASE_STORAGE_FOLDER[key]) {
+                objectRef = _storage.ref(constant.FIREBASE_STORAGE_FOLDER[key]).child(fileName)
                 break
             }
         }

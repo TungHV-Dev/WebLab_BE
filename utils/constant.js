@@ -29,7 +29,7 @@ module.exports = {
         FORM_SUBMITED_HISTORY: 'form_submited_history',
         NEWS: 'news'
     },
-    FIREBASE_STORAGE_TYPE: {
+    FIREBASE_STORAGE_FOLDER: {
         FILES: 'files',
         IMAGES: 'images',
         VIDEOS: 'videos'
