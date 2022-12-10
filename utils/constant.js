@@ -1,11 +1,13 @@
 module.exports = {
     RESPONSE_MESSAGE: {
         SUCCESS: 'Success',
-        FAIL: 'Fail'
+        FAIL: 'Fail',
+        NOT_FOUND: 'Not found'
     },
     RESPONSE_CODE: {
         SUCCESS: 0,
-        FAIL: -1
+        FAIL: -1,
+        NOT_FOUND: -2
     },
     HTTP_STATUS_CODE: {
         OK: 200,

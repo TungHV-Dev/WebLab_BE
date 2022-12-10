@@ -7,7 +7,7 @@ const insertNews = async (data) => {
         let insertObj = {
             title: data.title || null,
             sub_title: data.sub_title || null,
-            image_title_url: data.image_title_url || null,
+            image_title_name: data.image_title_name || null,
             html_content: data.html_content || null,
             is_deleted: 0,
             created_user: 'tunghv',
@@ -24,16 +24,15 @@ const getLimitOfLastNews = async (limit) => {
     try {
         let result = {}
         await _database.ref(constant.FIREBASE_DATABASE_NODE.NEWS).limitToLast(limit).once('value', (snapshot) => {
-            if (snapshot) {
+            if (snapshot.val()) {
                 result = snapshot.val()
             }
         })
 
-        let response = []
-        Object.keys(result).map(key => {
+        let response = await Promise.all(Object.keys(result).map(key => {
             let responseObj = { id: key, ...result[key] }
-            response.push(responseObj)
-        })
+            return responseObj
+        }))
 
         return response.reverse()
     } catch (e) {
@@ -45,16 +44,15 @@ const getAllNewsPaging = async (limit, offset) => {
     try {
         let result = {}
         await _database.ref(constant.FIREBASE_DATABASE_NODE.NEWS).once('value', (snapshot) => {
-            if (snapshot) {
+            if (snapshot.val()) {
                 result = snapshot.val()
             }
         })
 
-        let response = []
-        Object.keys(result).map(key => {
+        let response = await Promise.all(Object.keys(result).map(key => {
             let responseObj = { id: key, ...result[key] }
-            response.push(responseObj)
-        })
+            return responseObj
+        }))
 
         let start = offset
         let end = (offset + limit) < response.length ? (offset + limit) : response.length
@@ -69,10 +67,12 @@ const getNewsById = async (id) => {
     try {
         let result = {}
         await _database.ref(constant.FIREBASE_DATABASE_NODE.NEWS + '/' + id).once('value', (snapshot) => {
-            if (snapshot) {
-                result = snapshot.val()
-            }
+            result = snapshot.val()
         })
+
+        if (!result) {
+            return null
+        }
 
         return { id, ...result }
     } catch (e) {

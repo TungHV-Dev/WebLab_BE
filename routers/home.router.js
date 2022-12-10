@@ -38,6 +38,14 @@ router.get('/news/all', async (req, res) => {
 router.get('/news/detail', async (req, res) => {
     try {
         let result = await homeService.getNewsDetail(req.query)
+
+        if (!result) {
+            return res.status(constant.HTTP_STATUS_CODE.OK).json({
+                code: constant.RESPONSE_CODE.NOT_FOUND,
+                message: constant.RESPONSE_MESSAGE.NOT_FOUND
+            })
+        }
+
         return res.status(constant.HTTP_STATUS_CODE.OK).json({
             code: constant.RESPONSE_CODE.SUCCESS, 
             message: constant.RESPONSE_MESSAGE.SUCCESS, 
@@ -66,7 +74,7 @@ router.post('/news/add', async (req, res) => {
     }
 })
 
-router.get('/events/main', async (req, res) => {
+router.get('/event/main', async (req, res) => {
     try {
         let result = await homeService.getMainEvents(req.query)
         return res.status(constant.HTTP_STATUS_CODE.OK).json({
@@ -82,9 +90,14 @@ router.get('/events/main', async (req, res) => {
     }
 })
 
-router.get('/events/all', async (req, res) => {
+router.get('/event/all', async (req, res) => {
     try {
-
+        let result = await homeService.getAllEvents(req.query)
+        return res.status(constant.HTTP_STATUS_CODE.OK).json({
+            code: constant.RESPONSE_CODE.SUCCESS, 
+            message: constant.RESPONSE_MESSAGE.SUCCESS, 
+            data: result
+        })
     } catch (e) {
         return res.status(e.status || constant.HTTP_STATUS_CODE.INTERNAL_SERVER).json({
             code: constant.RESPONSE_CODE.FAIL,
@@ -93,9 +106,22 @@ router.get('/events/all', async (req, res) => {
     }
 })
 
-router.get('/events/detail', async (req, res) => {
+router.get('/event/detail', async (req, res) => {
     try {
+        let result = await homeService.getEventDetail(req.query)
 
+        if (!result) {
+            return res.status(constant.HTTP_STATUS_CODE.OK).json({
+                code: constant.RESPONSE_CODE.NOT_FOUND,
+                message: constant.RESPONSE_MESSAGE.NOT_FOUND
+            })
+        }
+
+        return res.status(constant.HTTP_STATUS_CODE.OK).json({
+            code: constant.RESPONSE_CODE.SUCCESS, 
+            message: constant.RESPONSE_MESSAGE.SUCCESS, 
+            data: result
+        })
     } catch (e) {
         return res.status(e.status || constant.HTTP_STATUS_CODE.INTERNAL_SERVER).json({
             code: constant.RESPONSE_CODE.FAIL,
