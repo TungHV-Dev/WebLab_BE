@@ -29,7 +29,8 @@ module.exports = {
     FIREBASE_DATABASE_NODE: {
         EVENTS: 'events',
         FORM_SUBMITED_HISTORY: 'form_submited_history',
-        NEWS: 'news'
+        NEWS: 'news',
+        MEMBER: 'member'
     },
     FIREBASE_STORAGE_FOLDER: {
         FILES: 'files',
@@ -38,5 +39,12 @@ module.exports = {
     },
     NUMBER_OF_MAIN_NEWS_RECORDS: 3,
     NUMBER_OF_MAIN_EVENTS_RECORDS: 3,
-    NUMBER_OF_MAIN_ACTIVITIES: 3
+    NUMBER_OF_MAIN_ACTIVITIES: 3,
+    MEMBER_STATUS: {
+        ACTIVE: 'ACTIVE',
+        INACTIVE: 'INACTIVE'
+    },
+    MEMBER_TYPE: {
+
+    }
 }
